@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Managment</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/07e5a93cf6.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <!-- navigation bar -->
+     <div id="navbar" class="flex flex-row justify-between p-3 mb-5">
+        <h1 class="text-4xl">Budget Manager</h1>
+
+        <ul
+          class="flex flex-row justify-center list-none gap-5 hover:underline"
+        >
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">ACCOUNT</a></li>
+          <li><a href="#">ABOUT</a></li>
+          <li><a href="#">CONTACTS</a></li>
+          <li><a href="#">FEEDBACK</a></li>
+        </ul>
+        
+      </div>
+
+
+    <div id="main" class="flex flex-row">
+      <div id="calculation">
+      
+
+      <!-- income input -->
+      <div id="inputs" class="flex flex-row gap-3 w-[800px] h-60">
+        <div id="income_input" class="border mx-10">
+          <h2 id="income" class="text-3xl mb-4 mt-2 text-center">
+            Total Income
+          </h2>
+          <p id="error_income" class="mb-4 text-center">
+            The Value Can Not Be Negative
+          </p>
+          <div>
+            <div class="relative mt-2 rounded-md shadow-sm mb-4">
+              <div
+                class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+              >
+                
+              </div>
+              <input
+                type="number"
+                name="price"
+                id="income_amount"
+                class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-blue-700 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                placeholder="0.00"
+              />
+              <div class="absolute inset-y-0 right-0 flex items-center">
+                <label for="currency" class="sr-only">Currency</label>
+                <select
+                  id="currency"
+                  name="currency"
+                  class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-blue-700 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+                >
+                  <option>KES</option>
+                  <option>USD</option>
+                  <option>CAD</option>
+                  <option>EUR</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button class="submit" id="check_income">Set Income</button>
+        </div>
+        <!-- expenses input -->
+        <div id="expense_input">
+          <h2 id="expenses" class="text-3xl mb-4 mt-2 text-center">Expenses</h2>
+          <input
+            type="text"
+            placeholder="Enter Expense Name"
+            id="expense_name"
+            class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-blue-700 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+          <br />
+          <div>
+            <div class="relative mt-2 rounded-md shadow-sm mb-4">
+              <div
+                class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+              >
+                
+              </div>
+              <input
+                type="number"
+                name="price"
+                id="expense_amount"
+                class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-blue-700 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                placeholder="0.00"
+              />
+              <div class="absolute inset-y-0 right-0 flex items-center">
+                <label for="currency" class="sr-only">Currency</label>
+                <select
+                  id="currency"
+                  name="currency"
+                  class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-blue-700 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
+                >
+                  <option>KES</option>
+                  <option>USD</option>
+                  <option>CAD</option>
+                  <option>EUR</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button class="submit" id="check_expense">Set Expense</button>
+        </div>
+      </div>
+
+      <!-- output -->
+      <div
+        id="output"
+        class="output_container flex flex-row justify-around w-[800px] border mt-4 h-20 mx-10">
+        <div>
+          <p>Total Income</p>
+          <span id="user_income">0</span>
+        </div>
+        <div>
+          <p>Total Expenses</p>
+          <span id="total_expense">0</span>
+        </div>
+        <div>
+          <p>Balance</p>
+          <span id="balance_amount">0</span>
+        </div>
+      </div>
+      <!-- expense list -->
+      <div class="list mx-10">
+        <h3 class="text-3xl mb-4 mt-10 mx-10 text-center">Expense List</h3>
+        <div class="list_container" id="list"></div>
+      
+
+      </div>
+      </div>
+      <div id="display_rates" class="w-full">
+        <div id="container">
+          <h1>Currency Rates</h1>
+          <input type="text" id="search" placeholder="Search For A Currency ..." class="block  rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-blue-700 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          <div id="currency-rates">
+            <ul></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
